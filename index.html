@@ -34,7 +34,6 @@
       --section-title-gradient: linear-gradient(to right, #eef4ff, #bbd6ff);
       --footer-bg: #060c1a;
       --mobile-menu-bg: rgba(6, 12, 26, 0.97);
-      --embed-bg: rgba(20, 40, 80, 0.3);
     }
 
     body {
@@ -331,57 +330,31 @@
       border: 1px solid var(--border-color);
     }
 
-    /* Feature embeds - small stylish badges */
-    .feature-embed {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      background: rgba(20, 40, 80, 0.25);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(70, 130, 255, 0.1);
-      border-radius: 1.5rem;
-      padding: 1rem 1.5rem;
-      transition: all 0.3s ease;
+    #navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
     }
-    .feature-embed:hover {
-      background: rgba(30, 60, 120, 0.3);
-      border-color: rgba(70, 130, 255, 0.25);
-      transform: translateY(-2px);
+
+    .nav-container {
+      position: relative;
     }
-    .feature-embed .icon-wrap {
-      width: 40px;
-      height: 40px;
-      min-width: 40px;
-      border-radius: 12px;
-      background: rgba(40, 100, 255, 0.15);
+
+    /* Mobile menu button */
+    #menuToggle {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #6aafff;
     }
-    .feature-embed .text-wrap h4 {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--text-primary);
-    }
-    .feature-embed .text-wrap p {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin: 0;
-    }
-
-    .features-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 0.8rem;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-
-    @media (min-width: 640px) {
-      .features-grid {
-        grid-template-columns: 1fr 1fr;
-      }
+    #menuToggle:focus {
+      outline: 2px solid rgba(70, 130, 255, 0.3);
+      border-radius: 8px;
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -394,23 +367,6 @@
       .hero-title { font-size: clamp(2.2rem, 12vw, 3.6rem); }
       .hero-content { padding: 0.5rem; }
       .btn-primary, .btn-secondary { padding: 0.8rem 1.8rem; font-size: 0.95rem; }
-      .feature-embed { padding: 0.8rem 1rem; }
-      .feature-embed .icon-wrap { width: 32px; height: 32px; min-width: 32px; }
-      .feature-embed .text-wrap h4 { font-size: 0.85rem; }
-      .feature-embed .text-wrap p { font-size: 0.7rem; }
-    }
-
-    /* Navbar fix for mobile */
-    #navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-    }
-
-    .nav-container {
-      position: relative;
     }
   </style>
 </head>
@@ -424,25 +380,27 @@
       </div>
       <div class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-300">
         <a href="#home" class="hover:text-white transition">Home</a>
-        <a href="#features" class="hover:text-white transition">Features</a>
         <a href="#experience" class="hover:text-white transition">Experience</a>
         <a href="#screens" class="hover:text-white transition">Screens</a>
         <a href="#download" class="hover:text-white transition">Download</a>
         <a href="https://github.com/zishutron/Stardust-store/releases/download/v12.0.2/Stardusthub.apk" class="btn-primary text-sm py-2 px-5 rounded-full">Download APK</a>
       </div>
-      <button id="menuToggle" class="md:hidden text-white/80 focus:outline-none p-2" aria-label="Menu">
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+      <button id="menuToggle" class="md:hidden text-white/80" aria-label="Toggle menu">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="4" y1="7" x2="20" y2="7"/>
+          <line x1="4" y1="12" x2="20" y2="12"/>
+          <line x1="4" y1="17" x2="20" y2="17"/>
+        </svg>
       </button>
     </div>
     <!-- Mobile menu -->
     <div id="mobileMenu" class="mobile-menu md:hidden">
       <div class="flex flex-col gap-4 text-white text-center text-lg">
-        <a href="#home" class="hover:text-blue-400 transition py-2 border-b border-white/5">Home</a>
-        <a href="#features" class="hover:text-blue-400 transition py-2 border-b border-white/5">Features</a>
-        <a href="#experience" class="hover:text-blue-400 transition py-2 border-b border-white/5">Experience</a>
-        <a href="#screens" class="hover:text-blue-400 transition py-2 border-b border-white/5">Screens</a>
-        <a href="#download" class="hover:text-blue-400 transition py-2 border-b border-white/5">Download</a>
-        <a href="https://github.com/zishutron/Stardust-store/releases/download/v12.0.2/Stardusthub.apk" class="btn-primary text-center mt-2">Download APK</a>
+        <a href="#home" class="hover:text-blue-400 transition py-3 border-b border-white/5">Home</a>
+        <a href="#experience" class="hover:text-blue-400 transition py-3 border-b border-white/5">Experience</a>
+        <a href="#screens" class="hover:text-blue-400 transition py-3 border-b border-white/5">Screens</a>
+        <a href="#download" class="hover:text-blue-400 transition py-3 border-b border-white/5">Download</a>
+        <a href="https://github.com/zishutron/Stardust-store/releases/download/v12.0.2/Stardusthub.apk" class="btn-primary text-center mt-3">Download APK</a>
       </div>
     </div>
   </nav>
@@ -460,7 +418,7 @@
       <p class="hero-sub fade-up visible" style="transition-delay:0.4s">STARDUST HUB brings conversations, creativity, discovery and connection together in one modern social experience.</p>
       <div class="flex flex-wrap items-center justify-center gap-4 mt-2 fade-up visible" style="transition-delay:0.5s">
         <a href="https://github.com/zishutron/Stardust-store/releases/download/v12.0.2/Stardusthub.apk" class="btn-primary">Download STARDUST HUB</a>
-        <a href="#features" class="btn-secondary">Explore Features</a>
+        <a href="#experience" class="btn-secondary">Explore Features</a>
       </div>
       <div class="mt-6 text-sm text-white/50 tracking-wide fade-up visible" style="transition-delay:0.6s">Android APK • Version 12.0.2</div>
     </div>
@@ -473,37 +431,6 @@
   <section class="py-8 px-4 max-w-5xl mx-auto text-center">
     <h2 class="section-title text-4xl md:text-5xl">More than a social app.</h2>
     <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mt-6 leading-relaxed">STARDUST HUB is designed around the way people connect today — sharing moments, discovering people, having conversations and expressing themselves through one connected experience.</p>
-  </section>
-
-  <!-- FEATURES SECTION - EMBED STYLE -->
-  <section id="features" class="py-10 px-4 max-w-4xl mx-auto">
-    <h2 class="section-title text-center mb-8">Everything you need to connect.</h2>
-    <div class="features-grid">
-      <div class="feature-embed fade-up">
-        <div class="icon-wrap"><i data-lucide="rss" class="w-5 h-5"></i></div>
-        <div class="text-wrap"><h4>Social Feed</h4><p>Share and discover posts in a dynamic social feed.</p></div>
-      </div>
-      <div class="feature-embed fade-up">
-        <div class="icon-wrap"><i data-lucide="film" class="w-5 h-5"></i></div>
-        <div class="text-wrap"><h4>Reels</h4><p>Experience short-form vertical video through an immersive Reels experience.</p></div>
-      </div>
-      <div class="feature-embed fade-up">
-        <div class="icon-wrap"><i data-lucide="message-circle" class="w-5 h-5"></i></div>
-        <div class="text-wrap"><h4>Direct Messaging</h4><p>Connect privately through conversations and messaging.</p></div>
-      </div>
-      <div class="feature-embed fade-up">
-        <div class="icon-wrap"><i data-lucide="user" class="w-5 h-5"></i></div>
-        <div class="text-wrap"><h4>Profiles</h4><p>Build and personalize your own social profile.</p></div>
-      </div>
-      <div class="feature-embed fade-up">
-        <div class="icon-wrap"><i data-lucide="search" class="w-5 h-5"></i></div>
-        <div class="text-wrap"><h4>Search & Discover</h4><p>Find people and explore the social ecosystem.</p></div>
-      </div>
-      <div class="feature-embed fade-up">
-        <div class="icon-wrap"><i data-lucide="phone" class="w-5 h-5"></i></div>
-        <div class="text-wrap"><h4>Voice Calling</h4><p>Connect with people through voice communication.</p></div>
-      </div>
-    </div>
   </section>
 
   <!-- GAP FILLER IMAGE -->
@@ -586,7 +513,7 @@
   <footer class="py-16 px-4">
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
       <div><img src="https://i.ibb.co/bMVbRpnn/4115603-ico.png" alt="STARDUST HUB" class="h-12 w-12 mb-3" /><h3 class="text-white text-xl font-semibold">STARDUST HUB</h3><p class="text-gray-400 text-sm mt-2">A modern social experience built for connection, discovery and expression.</p></div>
-      <div><h4 class="text-white font-medium">Navigation</h4><ul class="mt-3 space-y-2 text-sm"><li><a href="#home" class="footer-link">Home</a></li><li><a href="#features" class="footer-link">Features</a></li><li><a href="#experience" class="footer-link">Experience</a></li><li><a href="#screens" class="footer-link">Screens</a></li><li><a href="#download" class="footer-link">Download</a></li></ul></div>
+      <div><h4 class="text-white font-medium">Navigation</h4><ul class="mt-3 space-y-2 text-sm"><li><a href="#home" class="footer-link">Home</a></li><li><a href="#experience" class="footer-link">Experience</a></li><li><a href="#screens" class="footer-link">Screens</a></li><li><a href="#download" class="footer-link">Download</a></li></ul></div>
       <div><h4 class="text-white font-medium">Legal</h4><ul class="mt-3 space-y-2 text-sm"><li><a href="https://zishutron.github.io/Stardust-hub/privacy" class="footer-link">Privacy Policy</a></li><li><a href="https://zishutron.github.io/Stardust-hub/terms" class="footer-link">Terms of Service</a></li></ul></div>
       <div><h4 class="text-white font-medium">Get the app</h4><a href="https://github.com/zishutron/Stardust-store/releases/download/v12.0.2/Stardusthub.apk" class="btn-primary inline-block mt-3">Download APK</a></div>
     </div>
@@ -608,34 +535,35 @@
       navbar.classList.toggle('scrolled', window.scrollY > 40);
     });
 
-    // Mobile menu toggle - ROOT FIX
+    // ======== HAMBURGER MENU - COMPLETE FIX ========
     const menuToggle = document.getElementById('menuToggle');
     const mobileMenu = document.getElementById('mobileMenu');
-    let isMenuOpen = false;
-
+    
+    // Toggle menu on button click
     menuToggle.addEventListener('click', function(e) {
+      e.preventDefault();
       e.stopPropagation();
-      isMenuOpen = !isMenuOpen;
-      if (isMenuOpen) {
-        mobileMenu.classList.add('open');
-      } else {
+      mobileMenu.classList.toggle('open');
+    });
+
+    // Close menu when any link is clicked
+    document.querySelectorAll('#mobileMenu a').forEach(link => {
+      link.addEventListener('click', function() {
+        mobileMenu.classList.remove('open');
+      });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('#navbar')) {
         mobileMenu.classList.remove('open');
       }
     });
 
-    // Close mobile menu on link click
-    document.querySelectorAll('#mobileMenu a').forEach(link => {
-      link.addEventListener('click', function() {
+    // Close menu on window resize to desktop
+    window.addEventListener('resize', function() {
+      if (window.innerWidth >= 768) {
         mobileMenu.classList.remove('open');
-        isMenuOpen = false;
-      });
-    });
-
-    // Close mobile menu on outside click
-    document.addEventListener('click', function(e) {
-      if (!e.target.closest('#navbar')) {
-        mobileMenu.classList.remove('open');
-        isMenuOpen = false;
       }
     });
 
