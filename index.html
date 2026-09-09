@@ -1,99 +1,89 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" id="htmlRoot">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes" />
   <title>STARDUST HUB — Connect. Share. Discover.</title>
   <meta name="description" content="STARDUST HUB is a modern social experience for sharing, discovering, messaging and connecting." />
   <meta name="theme-color" content="#0b0f1a" />
-  <!-- Open Graph -->
   <meta property="og:title" content="STARDUST HUB — Connect. Share. Discover." />
   <meta property="og:description" content="STARDUST HUB is a modern social experience for sharing, discovering, messaging and connecting." />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="canonical" href="#" />
-  <!-- favicon using supplied logo -->
   <link rel="icon" href="https://i.ibb.co/bMVbRpnn/4115603-ico.png" type="image/png" />
-  <!-- Lucide icons CDN -->
   <script src="https://unpkg.com/lucide@latest" defer></script>
-  <!-- Tailwind via CDN (utility-first, but we'll override with custom) -->
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* custom styles – premium, futuristic, dark */
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    :root {
+      --bg-primary: #070b14;
+      --bg-secondary: #0b142a;
+      --bg-card: rgba(16, 28, 52, 0.45);
+      --bg-card-hover: rgba(20, 35, 65, 0.6);
+      --text-primary: #eef2f9;
+      --text-secondary: #ccddf9;
+      --text-muted: #9bb3dd;
+      --border-color: rgba(70, 130, 255, 0.12);
+      --glass-bg: rgba(10, 16, 30, 0.6);
+      --glass-scrolled: rgba(6, 12, 26, 0.85);
+      --hero-overlay: linear-gradient(135deg, rgba(4, 10, 28, 0.7) 20%, rgba(8, 20, 48, 0.5) 70%, rgba(2, 6, 20, 0.8) 100%);
+      --shadow-color: rgba(0, 20, 60, 0.5);
+      --btn-primary-bg: linear-gradient(145deg, #2a7aff, #1a4bdb);
+      --btn-primary-hover: linear-gradient(145deg, #3a8aff, #2a5beb);
+      --title-gradient: linear-gradient(to right, #f0f7ff, #b6d4ff, #9ac0ff);
+      --section-title-gradient: linear-gradient(to right, #eef4ff, #bbd6ff);
+      --footer-bg: #060c1a;
+      --mobile-menu-bg: rgba(6, 12, 26, 0.97);
+    }
+
+    .light-mode {
+      --bg-primary: #f0f4ff;
+      --bg-secondary: #e8edf8;
+      --bg-card: rgba(255, 255, 255, 0.7);
+      --bg-card-hover: rgba(255, 255, 255, 0.85);
+      --text-primary: #0b142a;
+      --text-secondary: #1a2a4a;
+      --text-muted: #3a4a6a;
+      --border-color: rgba(30, 60, 120, 0.15);
+      --glass-bg: rgba(255, 255, 255, 0.6);
+      --glass-scrolled: rgba(240, 244, 255, 0.85);
+      --hero-overlay: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 20%, rgba(200, 220, 255, 0.3) 70%, rgba(255, 255, 255, 0.5) 100%);
+      --shadow-color: rgba(30, 60, 120, 0.15);
+      --btn-primary-bg: linear-gradient(145deg, #2a7aff, #1a4bdb);
+      --btn-primary-hover: linear-gradient(145deg, #3a8aff, #2a5beb);
+      --title-gradient: linear-gradient(to right, #1a3a7a, #2a5aaa, #1a4a8a);
+      --section-title-gradient: linear-gradient(to right, #1a3a7a, #2a5aaa);
+      --footer-bg: #dce4f0;
+      --mobile-menu-bg: rgba(240, 244, 255, 0.97);
+    }
+
     body {
-      background: #070b14;
-      color: #eef2f9;
+      background: var(--bg-primary);
+      color: var(--text-primary);
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
       overflow-x: hidden;
       scroll-behavior: smooth;
-      transition: background 0.3s, color 0.3s;
+      transition: background 0.4s ease, color 0.3s ease;
     }
-    /* light theme */
-    [data-theme="light"] body {
-      background: #f0f4fe;
-      color: #111827;
-    }
-    [data-theme="light"] .glass-nav {
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(14px) saturate(180%);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-    }
-    [data-theme="light"] .glass-nav.scrolled {
-      background: rgba(255, 255, 255, 0.85);
-      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
-    }
-    [data-theme="light"] .hero-overlay {
-      background: linear-gradient(135deg, rgba(255,255,255,0.3) 20%, rgba(240, 245, 255, 0.2) 70%, rgba(255,255,255,0.4) 100%);
-    }
-    [data-theme="light"] .hero-title {
-      background: linear-gradient(to right, #0a1a3a, #1a3b7a);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    [data-theme="light"] .hero-sub { color: #1e293b; }
-    [data-theme="light"] .eyebrow { background: rgba(0, 40, 100, 0.08); color: #1a4b8a; border-color: rgba(0, 40, 100, 0.15); }
-    [data-theme="light"] .section-title {
-      background: linear-gradient(to right, #0a1a3a, #1a3b7a);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    [data-theme="light"] .glass-card {
-      background: rgba(255,255,255,0.5);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(0,0,0,0.06);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
-    }
-    [data-theme="light"] .glass-card:hover { border-color: rgba(0, 40, 100, 0.2); }
-    [data-theme="light"] .btn-secondary {
-      background: rgba(0,0,0,0.04);
-      border-color: rgba(0,0,0,0.1);
-      color: #1a2a4a;
-    }
-    [data-theme="light"] .btn-secondary:hover { background: rgba(0,0,0,0.08); }
-    [data-theme="light"] .text-gray-300 { color: #1e293b; }
-    [data-theme="light"] .text-gray-400 { color: #334155; }
-    [data-theme="light"] .footer-link { color: #1e3a6a; }
-    [data-theme="light"] .footer-link:hover { color: #0a1a3a; }
-    [data-theme="light"] .phone-frame { background: rgba(255,255,255,0.2); border-color: rgba(0,0,0,0.05); }
-    [data-theme="light"] #download .absolute { background: linear-gradient(to bottom, #e8eefc, #d5def5); }
-    [data-theme="light"] footer { background: #e8eefc; border-color: rgba(0,0,0,0.04); }
-    [data-theme="light"] .mobile-menu { background: rgba(255,255,255,0.96); }
-    /* rest same */
+
     .glass-nav {
-      background: rgba(10, 16, 30, 0.6);
+      background: var(--glass-bg);
       backdrop-filter: blur(14px) saturate(180%);
       -webkit-backdrop-filter: blur(14px) saturate(180%);
-      border-bottom: 1px solid rgba(70, 130, 255, 0.08);
+      border-bottom: 1px solid var(--border-color);
       transition: all 0.3s ease;
     }
     .glass-nav.scrolled {
-      background: rgba(6, 12, 26, 0.85);
+      background: var(--glass-scrolled);
       backdrop-filter: blur(18px) saturate(200%);
-      box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
     }
+    .light-mode .glass-nav.scrolled {
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    }
+
     .hero-video-wrap {
       position: relative;
       width: 100%;
@@ -115,9 +105,10 @@
     .hero-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(4, 10, 28, 0.7) 20%, rgba(8, 20, 48, 0.5) 70%, rgba(2, 6, 20, 0.8) 100%);
+      background: var(--hero-overlay);
       z-index: 1;
       pointer-events: none;
+      transition: background 0.4s ease;
     }
     .hero-content {
       position: relative;
@@ -135,6 +126,7 @@
       pointer-events: none;
     }
     .hero-content * { pointer-events: auto; }
+
     .eyebrow {
       letter-spacing: 4px;
       font-weight: 500;
@@ -149,6 +141,11 @@
       margin-bottom: 1.2rem;
       border: 1px solid rgba(80, 160, 255, 0.15);
     }
+    .light-mode .eyebrow {
+      color: #1a4a8a;
+      background: rgba(30, 70, 150, 0.1);
+    }
+
     .hero-logo {
       width: 72px;
       height: 72px;
@@ -160,30 +157,44 @@
       box-shadow: 0 20px 50px rgba(0, 30, 80, 0.5);
       border: 1px solid rgba(100, 180, 255, 0.15);
     }
+    .light-mode .hero-logo {
+      background: rgba(255, 255, 255, 0.6);
+      box-shadow: 0 20px 50px rgba(0, 30, 80, 0.1);
+    }
+
     .hero-title {
       font-size: clamp(2.8rem, 12vw, 5.6rem);
       font-weight: 700;
       letter-spacing: -0.02em;
       line-height: 1.05;
-      background: linear-gradient(to right, #f0f7ff, #b6d4ff, #9ac0ff);
+      background: var(--title-gradient);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
       text-shadow: 0 0 40px rgba(30, 120, 255, 0.2);
       max-width: 900px;
     }
+    .light-mode .hero-title {
+      text-shadow: 0 0 40px rgba(30, 120, 255, 0.05);
+    }
+
     .hero-sub {
       font-size: clamp(1rem, 2.2vw, 1.4rem);
-      color: #ccddf9;
+      color: var(--text-secondary);
       max-width: 600px;
       margin: 0.8rem auto 1.8rem;
       opacity: 0.9;
       font-weight: 400;
       letter-spacing: 0.2px;
-      text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+      text-shadow: 0 2px 20px rgba(0,0,0,0.3);
     }
+    .light-mode .hero-sub {
+      text-shadow: 0 2px 20px rgba(0,0,0,0.05);
+      color: #1a2a4a;
+    }
+
     .btn-primary {
-      background: linear-gradient(145deg, #2a7aff, #1a4bdb);
+      background: var(--btn-primary-bg);
       border: none;
       padding: 0.9rem 2.8rem;
       border-radius: 60px;
@@ -198,8 +209,9 @@
     .btn-primary:hover {
       transform: translateY(-3px) scale(1.02);
       box-shadow: 0 14px 40px rgba(40, 100, 255, 0.5);
-      background: linear-gradient(145deg, #3a8aff, #2a5beb);
+      background: var(--btn-primary-hover);
     }
+
     .btn-secondary {
       background: rgba(255,255,255,0.06);
       backdrop-filter: blur(6px);
@@ -210,42 +222,69 @@
       color: #e0edff;
       transition: all 0.25s ease;
     }
+    .light-mode .btn-secondary {
+      color: #1a2a4a;
+      border-color: rgba(30, 60, 120, 0.2);
+      background: rgba(30, 60, 120, 0.05);
+    }
     .btn-secondary:hover {
       background: rgba(255,255,255,0.12);
       border-color: rgba(255,255,255,0.3);
       transform: translateY(-2px);
     }
+    .light-mode .btn-secondary:hover {
+      background: rgba(30, 60, 120, 0.1);
+      border-color: rgba(30, 60, 120, 0.3);
+    }
+
     .section-title {
       font-size: clamp(2.2rem, 5vw, 3.4rem);
       font-weight: 600;
       letter-spacing: -0.02em;
-      background: linear-gradient(to right, #eef4ff, #bbd6ff);
+      background: var(--section-title-gradient);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
     }
+
     .glass-card {
-      background: rgba(16, 28, 52, 0.45);
+      background: var(--bg-card);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(80, 150, 255, 0.12);
+      border: 1px solid var(--border-color);
       border-radius: 2.5rem;
       padding: 2rem 1.8rem;
       transition: all 0.3s ease;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    }
+    .light-mode .glass-card {
+      box-shadow: 0 20px 40px rgba(0,0,0,0.05);
     }
     .glass-card:hover {
       transform: translateY(-8px);
       border-color: rgba(100, 180, 255, 0.25);
-      box-shadow: 0 30px 60px rgba(0, 20, 60, 0.5);
+      box-shadow: 0 30px 60px var(--shadow-color);
+      background: var(--bg-card-hover);
     }
+    .light-mode .glass-card:hover {
+      border-color: rgba(30, 60, 120, 0.3);
+    }
+
+    .glass-card p { color: var(--text-muted); }
+    .glass-card h3 { color: var(--text-primary); }
+
     .phone-frame {
       border-radius: 3.2rem;
-      background: rgba(0,0,0,0.3);
+      background: rgba(0,0,0,0.2);
       padding: 12px 8px;
-      box-shadow: 0 30px 70px rgba(0,0,0,0.7);
+      box-shadow: 0 30px 70px rgba(0,0,0,0.5);
       border: 1px solid rgba(255,255,255,0.06);
       backdrop-filter: blur(4px);
+      transition: background 0.3s ease;
+    }
+    .light-mode .phone-frame {
+      background: rgba(255,255,255,0.3);
+      box-shadow: 0 30px 70px rgba(0,0,0,0.08);
     }
     .phone-frame img {
       border-radius: 2.4rem;
@@ -253,9 +292,10 @@
       height: auto;
       display: block;
     }
+
     .img-gallery img {
       border-radius: 2rem;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
       transition: transform 0.2s ease;
       cursor: pointer;
       border: 1px solid rgba(255,255,255,0.05);
@@ -263,10 +303,13 @@
       height: auto;
       object-fit: cover;
     }
+    .light-mode .img-gallery img {
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    }
     .img-gallery img:hover {
       transform: scale(1.01);
     }
-    /* lightbox */
+
     .lightbox {
       position: fixed;
       inset: 0;
@@ -292,27 +335,29 @@
       border-radius: 2rem;
       box-shadow: 0 40px 80px black;
     }
-    /* mobile menu */
+
     .mobile-menu {
       display: none;
-      background: rgba(6, 12, 26, 0.97);
+      background: var(--mobile-menu-bg);
       backdrop-filter: blur(20px);
       padding: 2rem 1.5rem;
-      border-bottom: 1px solid rgba(70, 130, 255, 0.1);
+      border-bottom: 1px solid var(--border-color);
+      transition: background 0.3s ease;
     }
     .mobile-menu.open { display: block; }
+
     .footer-link {
-      color: #9bb3dd;
+      color: var(--text-muted);
       transition: color 0.2s;
     }
-    .footer-link:hover { color: #d0e2ff; }
-    @media (max-width: 768px) {
-      .hero-title { font-size: clamp(2.2rem, 12vw, 3.6rem); }
-      .hero-content { padding: 0.5rem; }
-      .btn-primary, .btn-secondary { padding: 0.8rem 1.8rem; font-size: 0.95rem; }
-      .glass-card { padding: 1.5rem 1rem; }
+    .footer-link:hover { color: var(--text-primary); }
+
+    footer {
+      background: var(--footer-bg);
+      border-top: 1px solid var(--border-color);
+      transition: background 0.4s ease, border-color 0.3s ease;
     }
-    /* scroll indicator */
+
     .scroll-indicator {
       animation: bounce 2s infinite;
       width: 28px;
@@ -334,6 +379,13 @@
       transform: translateX(-50%);
       animation: scrollDot 2s infinite;
     }
+    .light-mode .scroll-indicator {
+      border-color: rgba(30, 60, 120, 0.25);
+    }
+    .light-mode .scroll-indicator::after {
+      background: #2a5aaa;
+    }
+
     @keyframes scrollDot {
       0% { opacity: 0.3; transform: translateX(-50%) translateY(0); }
       50% { opacity: 1; transform: translateX(-50%) translateY(14px); }
@@ -343,6 +395,7 @@
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(8px); }
     }
+
     .fade-up {
       opacity: 0;
       transform: translateY(20px);
@@ -352,116 +405,151 @@
       opacity: 1;
       transform: translateY(0);
     }
-    /* reduced motion */
+
+    .theme-toggle {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid var(--border-color);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--text-primary);
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+    }
+    .theme-toggle:hover {
+      background: rgba(255,255,255,0.15);
+      transform: scale(1.05);
+    }
+    .light-mode .theme-toggle {
+      background: rgba(30, 60, 120, 0.08);
+    }
+    .light-mode .theme-toggle:hover {
+      background: rgba(30, 60, 120, 0.15);
+    }
+
+    .gap-image-wrap {
+      padding: 1rem 0;
+    }
+    .gap-image-wrap img {
+      border-radius: 2rem;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+      width: 100%;
+      max-width: 800px;
+      display: block;
+      margin: 0 auto;
+      border: 1px solid var(--border-color);
+    }
+    .light-mode .gap-image-wrap img {
+      box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+    }
+
     @media (prefers-reduced-motion: reduce) {
       .fade-up, .fade-up.visible { opacity: 1; transform: none; transition: none; }
       .scroll-indicator { animation: none; }
       .scroll-indicator::after { animation: none; }
       .glass-card:hover { transform: none; }
     }
-    /* theme toggle button */
-    .theme-toggle {
-      background: rgba(255,255,255,0.08);
-      border-radius: 40px;
-      padding: 0.3rem 0.6rem;
-      border: 1px solid rgba(255,255,255,0.08);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      transition: all 0.2s;
+
+    @media (max-width: 768px) {
+      .hero-title { font-size: clamp(2.2rem, 12vw, 3.6rem); }
+      .hero-content { padding: 0.5rem; }
+      .btn-primary, .btn-secondary { padding: 0.8rem 1.8rem; font-size: 0.95rem; }
+      .glass-card { padding: 1.5rem 1rem; }
     }
-    .theme-toggle:hover { background: rgba(255,255,255,0.15); }
-    [data-theme="light"] .theme-toggle { background: rgba(0,0,0,0.04); border-color: rgba(0,0,0,0.06); }
-    [data-theme="light"] .theme-toggle:hover { background: rgba(0,0,0,0.08); }
   </style>
 </head>
-<body>
+<body id="appBody">
   <!-- NAVIGATION -->
   <nav id="navbar" class="fixed top-0 left-0 w-full z-50 glass-nav transition-all duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 md:h-20">
       <div class="flex items-center gap-2">
         <img src="https://i.ibb.co/bMVbRpnn/4115603-ico.png" alt="STARDUST HUB logo" class="h-8 w-8 md:h-10 md:w-10 object-contain" />
-        <span class="text-lg md:text-xl font-semibold tracking-tight text-white/90">STARDUST HUB</span>
+        <span class="text-lg md:text-xl font-semibold tracking-tight text-current">STARDUST HUB</span>
       </div>
-      <div class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-300">
-        <a href="#home" class="hover:text-white transition">Home</a>
-        <a href="#features" class="hover:text-white transition">Features</a>
-        <a href="#experience" class="hover:text-white transition">Experience</a>
-        <a href="#screens" class="hover:text-white transition">Screens</a>
-        <a href="#download" class="hover:text-white transition">Download</a>
-        <!-- theme toggle -->
-        <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white/80"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white/80"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-        </button>
+      <div class="hidden md:flex items-center gap-6 text-sm font-medium">
+        <a href="#home" class="text-current/70 hover:text-current transition">Home</a>
+        <a href="#features" class="text-current/70 hover:text-current transition">Features</a>
+        <a href="#experience" class="text-current/70 hover:text-current transition">Experience</a>
+        <a href="#screens" class="text-current/70 hover:text-current transition">Screens</a>
+        <a href="#download" class="text-current/70 hover:text-current transition">Download</a>
         <a href="https://github.com/zishutron/Stardust-store/releases/download/v12.0.2/Stardusthub.apk" class="btn-primary text-sm py-2 px-5 rounded-full">Download APK</a>
+        <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+          <svg id="themeIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
       </div>
       <div class="flex items-center gap-2 md:hidden">
         <button id="themeToggleMobile" class="theme-toggle" aria-label="Toggle theme">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white/80"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white/80"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg id="themeIconMobile" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         </button>
-        <button id="menuToggle" class="md:hidden text-white/80 focus:outline-none" aria-label="Menu">
+        <button id="menuToggle" class="text-current/80 focus:outline-none p-2" aria-label="Menu">
           <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
         </button>
       </div>
     </div>
     <!-- Mobile menu -->
     <div id="mobileMenu" class="mobile-menu md:hidden">
-      <div class="flex flex-col gap-4 text-white text-center text-lg">
-        <a href="#home" class="hover:text-blue-300">Home</a>
-        <a href="#features" class="hover:text-blue-300">Features</a>
-        <a href="#experience" class="hover:text-blue-300">Experience</a>
-        <a href="#screens" class="hover:text-blue-300">Screens</a>
-        <a href="#download" class="hover:text-blue-300">Download</a>
+      <div class="flex flex-col gap-4 text-current text-center text-lg">
+        <a href="#home" class="hover:text-blue-400 transition">Home</a>
+        <a href="#features" class="hover:text-blue-400 transition">Features</a>
+        <a href="#experience" class="hover:text-blue-400 transition">Experience</a>
+        <a href="#screens" class="hover:text-blue-400 transition">Screens</a>
+        <a href="#download" class="hover:text-blue-400 transition">Download</a>
         <a href="https://github.com/zishutron/Stardust-store/releases/download/v12.0.2/Stardusthub.apk" class="btn-primary text-center">Download APK</a>
       </div>
     </div>
   </nav>
 
-  <!-- HERO (video without logo preload) -->
+  <!-- HERO -->
   <section id="home" class="hero-video-wrap relative">
-    <video autoplay muted playsinline loop preload="auto" poster="">
+    <video autoplay muted playsinline loop preload="metadata">
       <source src="https://res.cloudinary.com/vnq9eo7a/video/upload/v1788922524/Digital_social_ecosystem_video_s__202609090556.mp4" type="video/mp4" />
     </video>
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <div class="fade-up visible" style="transition-delay:0.1s"><span class="eyebrow">THE NEXT SOCIAL EXPERIENCE</span></div>
+      <img src="https://i.ibb.co/bMVbRpnn/4115603-ico.png" alt="STARDUST HUB logo" class="hero-logo fade-up visible" style="transition-delay:0.2s" />
       <h1 class="hero-title fade-up visible" style="transition-delay:0.3s">Connect. Share. Discover.</h1>
       <p class="hero-sub fade-up visible" style="transition-delay:0.4s">STARDUST HUB brings conversations, creativity, discovery and connection together in one modern social experience.</p>
       <div class="flex flex-wrap items-center justify-center gap-4 mt-2 fade-up visible" style="transition-delay:0.5s">
         <a href="https://github.com/zishutron/Stardust-store/releases/download/v12.0.2/Stardusthub.apk" class="btn-primary">Download STARDUST HUB</a>
         <a href="#features" class="btn-secondary">Explore Features</a>
       </div>
-      <div class="mt-6 text-sm text-white/50 tracking-wide fade-up visible" style="transition-delay:0.6s">Android APK • Version 12.0.2</div>
+      <div class="mt-6 text-sm text-current/50 tracking-wide fade-up visible" style="transition-delay:0.6s">Android APK • Version 12.0.2</div>
     </div>
-    <!-- scroll indicator -->
     <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 hidden md:block">
       <div class="scroll-indicator"></div>
     </div>
   </section>
 
   <!-- QUICK INTRO -->
-  <section class="py-20 px-4 max-w-5xl mx-auto text-center">
+  <section class="py-12 px-4 max-w-5xl mx-auto text-center">
     <h2 class="section-title text-4xl md:text-5xl">More than a social app.</h2>
-    <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mt-6 leading-relaxed">STARDUST HUB is designed around the way people connect today — sharing moments, discovering people, having conversations and expressing themselves through one connected experience.</p>
+    <p class="text-lg md:text-xl text-current/80 max-w-3xl mx-auto mt-6 leading-relaxed">STARDUST HUB is designed around the way people connect today — sharing moments, discovering people, having conversations and expressing themselves through one connected experience.</p>
   </section>
 
   <!-- FEATURES -->
-  <section id="features" class="py-20 px-4 max-w-7xl mx-auto">
-    <h2 class="section-title text-center mb-16">Everything you need to connect.</h2>
+  <section id="features" class="py-16 px-4 max-w-7xl mx-auto">
+    <h2 class="section-title text-center mb-12">Everything you need to connect.</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div class="glass-card fade-up"><i data-lucide="rss" class="w-8 h-8 text-blue-400 mb-4"></i><h3 class="text-xl font-semibold">Social Feed</h3><p class="text-gray-400 text-sm mt-2">Share and discover posts in a dynamic social feed.</p></div>
-      <div class="glass-card fade-up"><i data-lucide="film" class="w-8 h-8 text-blue-400 mb-4"></i><h3 class="text-xl font-semibold">Reels</h3><p class="text-gray-400 text-sm mt-2">Experience short-form vertical video through an immersive Reels experience.</p></div>
-      <div class="glass-card fade-up"><i data-lucide="message-circle" class="w-8 h-8 text-blue-400 mb-4"></i><h3 class="text-xl font-semibold">Direct Messaging</h3><p class="text-gray-400 text-sm mt-2">Connect privately through conversations and messaging.</p></div>
-      <div class="glass-card fade-up"><i data-lucide="user" class="w-8 h-8 text-blue-400 mb-4"></i><h3 class="text-xl font-semibold">Profiles</h3><p class="text-gray-400 text-sm mt-2">Build and personalize your own social profile.</p></div>
-      <div class="glass-card fade-up"><i data-lucide="search" class="w-8 h-8 text-blue-400 mb-4"></i><h3 class="text-xl font-semibold">Search & Discover</h3><p class="text-gray-400 text-sm mt-2">Find people and explore the social ecosystem.</p></div>
-      <div class="glass-card fade-up"><i data-lucide="phone" class="w-8 h-8 text-blue-400 mb-4"></i><h3 class="text-xl font-semibold">Voice Calling</h3><p class="text-gray-400 text-sm mt-2">Connect with people through voice communication.</p></div>
+      <div class="glass-card fade-up"><i data-lucide="rss" class="w-8 h-8 text-blue-400 mb-4"></i><h3 class="text-xl font-semibold">Social Feed</h3><p class="text-sm mt-2">Share and discover posts in a dynamic social feed.</p></div>
+      <div class="glass-card fade-up"><i data-lucide="film" class="w-8 h-8 text-blue-400 mb-4"></i><h3 class="text-xl font-semibold">Reels</h3><p class="text-sm mt-2">Experience short-form vertical video through an immersive Reels experience.</p></div>
+      <div class="glass-card fade-up"><i data-lucide="message-circle" class="w-8 h-8 text-blue-400 mb-4"></i><h3 class="text-xl font-semibold">Direct Messaging</h3><p class="text-sm mt-2">Connect privately through conversations and messaging.</p></div>
+      <div class="glass-card fade-up"><i data-lucide="user" class="w-8 h-8 text-blue-400 mb-4"></i><h3 class="text-xl font-semibold">Profiles</h3><p class="text-sm mt-2">Build and personalize your own social profile.</p></div>
+      <div class="glass-card fade-up"><i data-lucide="search" class="w-8 h-8 text-blue-400 mb-4"></i><h3 class="text-xl font-semibold">Search & Discover</h3><p class="text-sm mt-2">Find people and explore the social ecosystem.</p></div>
+      <div class="glass-card fade-up"><i data-lucide="phone" class="w-8 h-8 text-blue-400 mb-4"></i><h3 class="text-xl font-semibold">Voice Calling</h3><p class="text-sm mt-2">Connect with people through voice communication.</p></div>
     </div>
   </section>
 
-  <!-- APP EXPERIENCE (gap fixed with extra content) -->
+  <!-- GAP FILLER IMAGE - Between Features and Experience -->
+  <section class="gap-image-wrap px-4 max-w-5xl mx-auto">
+    <img src="https://i.ibb.co/7tx8z5Nr/file-00000000c7c4820892f12835b36bdce7.png" alt="STARDUST HUB feature showcase" loading="lazy" />
+  </section>
+
+  <!-- APP EXPERIENCE -->
   <section id="experience" class="py-12 px-4 max-w-7xl mx-auto">
     <h2 class="section-title text-center mb-6">Designed around your experience.</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
@@ -469,46 +557,40 @@
       <div class="phone-frame"><img src="https://i.ibb.co/RW5552Y/1000404139.jpg" alt="Profile screen" loading="lazy" /></div>
       <div class="phone-frame"><img src="https://i.ibb.co/2DBW7L5/1000404136.jpg" alt="Chat screen" loading="lazy" /></div>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10 text-center text-gray-300">
-      <div><span class="text-xl font-medium text-white">Your world at a glance.</span></div>
-      <div><span class="text-xl font-medium text-white">Conversations that stay connected.</span></div>
-      <div><span class="text-xl font-medium text-white">A profile that feels like you.</span></div>
-    </div>
-    <!-- extra visual to fill gap -->
-    <div class="mt-16 flex justify-center gap-6 flex-wrap">
-      <span class="px-6 py-2 bg-white/5 rounded-full text-sm text-blue-300 border border-blue-500/10">✦ Real-time feed</span>
-      <span class="px-6 py-2 bg-white/5 rounded-full text-sm text-blue-300 border border-blue-500/10">✦ End-to-end encrypted</span>
-      <span class="px-6 py-2 bg-white/5 rounded-full text-sm text-blue-300 border border-blue-500/10">✦ Custom themes</span>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10 text-center text-current/80">
+      <div><span class="text-xl font-medium text-current">Your world at a glance.</span></div>
+      <div><span class="text-xl font-medium text-current">Conversations that stay connected.</span></div>
+      <div><span class="text-xl font-medium text-current">A profile that feels like you.</span></div>
     </div>
   </section>
 
   <!-- REELS -->
-  <section class="py-20 px-4 max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
-    <div class="flex-1"><h2 class="section-title text-4xl md:text-5xl">Enter the Reels experience.</h2><p class="text-gray-300 text-lg mt-4">Explore an immersive stream of short-form content built for discovery, entertainment and creativity.</p></div>
+  <section class="py-16 px-4 max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
+    <div class="flex-1"><h2 class="section-title text-4xl md:text-5xl">Enter the Reels experience.</h2><p class="text-current/80 text-lg mt-4">Explore an immersive stream of short-form content built for discovery, entertainment and creativity.</p></div>
     <div class="flex-1 phone-frame max-w-[300px]"><img src="https://i.ibb.co/6RmBHGGc/1000404137.jpg" alt="Reels screen" loading="lazy" /></div>
   </section>
 
   <!-- DISCOVERY -->
-  <section class="py-20 px-4 max-w-6xl mx-auto flex flex-col md:flex-row-reverse items-center gap-12">
-    <div class="flex-1"><h2 class="section-title text-4xl md:text-5xl">Discover new connections.</h2><p class="text-gray-300 text-lg mt-4">STARDUST HUB makes it easier to search and discover people within the platform.</p></div>
+  <section class="py-16 px-4 max-w-6xl mx-auto flex flex-col md:flex-row-reverse items-center gap-12">
+    <div class="flex-1"><h2 class="section-title text-4xl md:text-5xl">Discover new connections.</h2><p class="text-current/80 text-lg mt-4">STARDUST HUB makes it easier to search and discover people within the platform.</p></div>
     <div class="flex-1 phone-frame max-w-[300px]"><img src="https://i.ibb.co/tw5BPn8S/1000404138.jpg" alt="Search screen" loading="lazy" /></div>
   </section>
 
   <!-- PROFILE -->
-  <section class="py-20 px-4 max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
-    <div class="flex-1"><h2 class="section-title text-4xl md:text-5xl">Make your profile yours.</h2><p class="text-gray-300 text-lg mt-4">Create a profile that represents who you are and how you want to be seen.</p></div>
+  <section class="py-16 px-4 max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
+    <div class="flex-1"><h2 class="section-title text-4xl md:text-5xl">Make your profile yours.</h2><p class="text-current/80 text-lg mt-4">Create a profile that represents who you are and how you want to be seen.</p></div>
     <div class="flex-1 phone-frame max-w-[300px]"><img src="https://i.ibb.co/RW5552Y/1000404139.jpg" alt="Profile screen" loading="lazy" /></div>
   </section>
 
   <!-- CHAT -->
-  <section class="py-20 px-4 max-w-6xl mx-auto flex flex-col md:flex-row-reverse items-center gap-12">
-    <div class="flex-1"><h2 class="section-title text-4xl md:text-5xl">Conversations that feel connected.</h2><p class="text-gray-300 text-lg mt-4">Stay connected through direct conversations and a modern messaging experience.</p></div>
+  <section class="py-16 px-4 max-w-6xl mx-auto flex flex-col md:flex-row-reverse items-center gap-12">
+    <div class="flex-1"><h2 class="section-title text-4xl md:text-5xl">Conversations that feel connected.</h2><p class="text-current/80 text-lg mt-4">Stay connected through direct conversations and a modern messaging experience.</p></div>
     <div class="flex-1 phone-frame max-w-[300px]"><img src="https://i.ibb.co/2DBW7L5/1000404136.jpg" alt="Chat screen" loading="lazy" /></div>
   </section>
 
   <!-- SCREEN SHOWCASE -->
-  <section id="screens" class="py-20 px-4 max-w-7xl mx-auto">
-    <h2 class="section-title text-center mb-12">Take a closer look.</h2>
+  <section id="screens" class="py-16 px-4 max-w-7xl mx-auto">
+    <h2 class="section-title text-center mb-10">Take a closer look.</h2>
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 img-gallery">
       <img src="https://i.ibb.co/8LKQMnL8/1000404112.jpg" alt="Splash screen" loading="lazy" class="cursor-pointer" />
       <img src="https://i.ibb.co/KzWM4L6K/1000404135.jpg" alt="Home screen" loading="lazy" class="cursor-pointer" />
@@ -520,7 +602,7 @@
   </section>
 
   <!-- SPLASH BRAND MOMENT -->
-  <section class="py-16 px-4 max-w-3xl mx-auto text-center">
+  <section class="py-12 px-4 max-w-3xl mx-auto text-center">
     <div class="phone-frame max-w-[240px] mx-auto"><img src="https://i.ibb.co/8LKQMnL8/1000404112.jpg" alt="Splash screen" loading="lazy" /></div>
     <h2 class="section-title text-3xl md:text-4xl mt-8">Welcome to STARDUST HUB.</h2>
   </section>
@@ -530,23 +612,23 @@
     <div class="absolute inset-0 bg-gradient-to-b from-[#0b142a] to-[#020812] -z-10"></div>
     <div class="max-w-3xl mx-auto">
       <h2 class="section-title text-4xl md:text-5xl">Ready to enter STARDUST HUB?</h2>
-      <p class="text-gray-300 text-lg mt-4">Download the latest Android version and experience STARDUST HUB for yourself.</p>
+      <p class="text-current/80 text-lg mt-4">Download the latest Android version and experience STARDUST HUB for yourself.</p>
       <div class="mt-10 flex flex-wrap justify-center gap-4">
         <a href="https://github.com/zishutron/Stardust-store/releases/download/v12.0.2/Stardusthub.apk" class="btn-primary text-lg px-10 py-4">Download APK</a>
       </div>
-      <p class="text-sm text-white/40 mt-6">STARDUST HUB v12.0.2</p>
+      <p class="text-sm text-current/40 mt-6">STARDUST HUB v12.0.2</p>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer class="bg-[#060c1a] border-t border-white/5 py-16 px-4">
+  <footer class="py-16 px-4">
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
-      <div><img src="https://i.ibb.co/bMVbRpnn/4115603-ico.png" alt="STARDUST HUB" class="h-12 w-12 mb-3" /><h3 class="text-white text-xl font-semibold">STARDUST HUB</h3><p class="text-gray-400 text-sm mt-2">A modern social experience built for connection, discovery and expression.</p></div>
-      <div><h4 class="text-white font-medium">Navigation</h4><ul class="mt-3 space-y-2 text-sm"><li><a href="#home" class="footer-link">Home</a></li><li><a href="#features" class="footer-link">Features</a></li><li><a href="#experience" class="footer-link">Experience</a></li><li><a href="#screens" class="footer-link">Screens</a></li><li><a href="#download" class="footer-link">Download</a></li></ul></div>
-      <div><h4 class="text-white font-medium">Legal</h4><ul class="mt-3 space-y-2 text-sm"><li><a href="https://zishutron.github.io/Stardust-hub/privacy" class="footer-link">Privacy Policy</a></li><li><a href="https://zishutron.github.io/Stardust-hub/terms" class="footer-link">Terms of Service</a></li></ul></div>
-      <div><h4 class="text-white font-medium">Get the app</h4><a href="https://github.com/zishutron/Stardust-store/releases/download/v12.0.2/Stardusthub.apk" class="btn-primary inline-block mt-3">Download APK</a></div>
+      <div><img src="https://i.ibb.co/bMVbRpnn/4115603-ico.png" alt="STARDUST HUB" class="h-12 w-12 mb-3" /><h3 class="text-current text-xl font-semibold">STARDUST HUB</h3><p class="text-current/60 text-sm mt-2">A modern social experience built for connection, discovery and expression.</p></div>
+      <div><h4 class="text-current font-medium">Navigation</h4><ul class="mt-3 space-y-2 text-sm"><li><a href="#home" class="footer-link">Home</a></li><li><a href="#features" class="footer-link">Features</a></li><li><a href="#experience" class="footer-link">Experience</a></li><li><a href="#screens" class="footer-link">Screens</a></li><li><a href="#download" class="footer-link">Download</a></li></ul></div>
+      <div><h4 class="text-current font-medium">Legal</h4><ul class="mt-3 space-y-2 text-sm"><li><a href="https://zishutron.github.io/Stardust-hub/privacy" class="footer-link">Privacy Policy</a></li><li><a href="https://zishutron.github.io/Stardust-hub/terms" class="footer-link">Terms of Service</a></li></ul></div>
+      <div><h4 class="text-current font-medium">Get the app</h4><a href="https://github.com/zishutron/Stardust-store/releases/download/v12.0.2/Stardusthub.apk" class="btn-primary inline-block mt-3">Download APK</a></div>
     </div>
-    <div class="max-w-7xl mx-auto border-t border-white/5 mt-12 pt-6 text-sm text-gray-500 text-center">© 2026 STARDUST HUB. All rights reserved.</div>
+    <div class="max-w-7xl mx-auto border-t border-current/10 mt-12 pt-6 text-sm text-current/40 text-center">© 2026 STARDUST HUB. All rights reserved.</div>
   </footer>
 
   <!-- LIGHTBOX -->
@@ -558,42 +640,69 @@
     // Lucide icons
     lucide.createIcons();
 
-    // Theme toggle with local storage
-    const themeToggle = document.getElementById('themeToggle');
-    const themeToggleMobile = document.getElementById('themeToggleMobile');
-    const html = document.documentElement;
-
-    function setTheme(theme) {
-      html.setAttribute('data-theme', theme);
-      localStorage.setItem('stardust-theme', theme);
-      // update icon visibility if needed (optional)
-    }
-
-    // load saved theme
-    const savedTheme = localStorage.getItem('stardust-theme') || 'dark';
-    setTheme(savedTheme);
-
-    function toggleTheme() {
-      const current = html.getAttribute('data-theme');
-      const next = current === 'dark' ? 'light' : 'dark';
-      setTheme(next);
-    }
-
-    themeToggle.addEventListener('click', toggleTheme);
-    if (themeToggleMobile) themeToggleMobile.addEventListener('click', toggleTheme);
-
     // Navbar scroll effect
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
       navbar.classList.toggle('scrolled', window.scrollY > 40);
     });
 
-    // Mobile menu toggle
+    // Mobile menu toggle - FIXED
     const menuToggle = document.getElementById('menuToggle');
     const mobileMenu = document.getElementById('mobileMenu');
-    menuToggle.addEventListener('click', () => {
+    menuToggle.addEventListener('click', function(e) {
+      e.stopPropagation();
       mobileMenu.classList.toggle('open');
     });
+
+    // Close mobile menu on link click
+    document.querySelectorAll('#mobileMenu a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+      });
+    });
+
+    // Close mobile menu on outside click
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('#navbar')) {
+        mobileMenu.classList.remove('open');
+      }
+    });
+
+    // Theme toggle - FIXED: single button with moon/sun
+    function setTheme(theme) {
+      const html = document.getElementById('htmlRoot');
+      const body = document.getElementById('appBody');
+      const icons = document.querySelectorAll('#themeIcon, #themeIconMobile');
+      
+      if (theme === 'light') {
+        html.classList.add('light-mode');
+        body.classList.add('light-mode');
+        icons.forEach(icon => {
+          icon.innerHTML = '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
+        });
+        localStorage.setItem('stardust-theme', 'light');
+      } else {
+        html.classList.remove('light-mode');
+        body.classList.remove('light-mode');
+        icons.forEach(icon => {
+          icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+        });
+        localStorage.setItem('stardust-theme', 'dark');
+      }
+    }
+
+    function toggleTheme() {
+      const isLight = document.getElementById('htmlRoot').classList.contains('light-mode');
+      setTheme(isLight ? 'dark' : 'light');
+    }
+
+    // Theme toggle buttons
+    document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+    document.getElementById('themeToggleMobile').addEventListener('click', toggleTheme);
+
+    // Load saved theme
+    const savedTheme = localStorage.getItem('stardust-theme') || 'dark';
+    setTheme(savedTheme);
 
     // IntersectionObserver for fade-up
     const faders = document.querySelectorAll('.fade-up');
